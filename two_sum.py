@@ -7,7 +7,7 @@ Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
 
 class Solution:
 
-    def twoSum(self, nums: list[int], target: int) -> list[int]:
+    def twoSumone(self, nums: list[int], target: int) -> list[int]:
         seen = {}
         for i, v in enumerate(nums):
             result = target - v
@@ -16,7 +16,24 @@ class Solution:
             seen[v] = i
         return []
 
+    def twoSumsecond(self, nums: list[int], target: int) -> list[int]:
+        checked = {}
+        for i, v in enumerate(nums):
+            for elem in range(i + 1, len(nums)):
+                if v not in checked:
+                    if v + nums[elem] == target:
+                        return [i, elem]
+                else:
+                    checked[v] = i
+        return []
+
+    def twoSumthird(self, nums: list[int], target: int) -> list[int]:
+        for i, v in enumerate(nums):
+            for j in range(i + 1, len(nums)):
+                if v + nums[j] == target:
+                    return [i, j]
+
 l = Solution()
-print(l.twoSum([2, 7, 11, 15], 9))
-print(l.twoSum([3, 2, 4], 6))
-print(l.twoSum([3, 3], 6))
+# print(l.twoSumthird([2, 5, 5, 11], 10))
+# print(l.twoSumthird([3, 2, 4], 6))
+# print(l.twoSumthird([3, 3], 6))
